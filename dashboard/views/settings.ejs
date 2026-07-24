@@ -1,0 +1,147 @@
+<form id="serverSettingsForm" class="settings-form">
+  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+  <div class="form-grid">
+    <!-- General Bot Identity -->
+    <div class="section-card glass-card">
+      <div class="card-header">
+        <h3><i class="fa-solid fa-robot"></i> Bot & Branding Identity</h3>
+      </div>
+      <div class="card-body">
+        <div class="form-group">
+          <label for="botName">Bot Display Name</label>
+          <input type="text" id="botName" name="botName" class="form-control" value="<%= config.botName || 'OTC Ticket Bot' %>" required>
+        </div>
+
+        <div class="form-group">
+          <label for="botAvatar">Bot Avatar URL</label>
+          <input type="url" id="botAvatar" name="botAvatar" class="form-control" value="<%= config.botAvatar || '' %>" placeholder="https://cdn.discordapp.com/...">
+        </div>
+
+        <div class="form-group">
+          <label for="footerText">Footer Text</label>
+          <input type="text" id="footerText" name="footerText" class="form-control" value="<%= config.footerText || 'OTC Ticket Bot' %>">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group half">
+            <label for="timezone">Timezone</label>
+            <input type="text" id="timezone" name="timezone" class="form-control" value="<%= config.timezone || 'UTC' %>" placeholder="e.g. UTC, America/New_York">
+          </div>
+          <div class="form-group half">
+            <label for="language">Language</label>
+            <select id="language" name="language" class="form-control">
+              <option value="en" <%= (config.language || 'en') === 'en' ? 'selected' : '' %>>English</option>
+              <option value="es" <%= config.language === 'es' ? 'selected' : '' %>>Spanish</option>
+              <option value="fr" <%= config.language === 'fr' ? 'selected' : '' %>>French</option>
+              <option value="de" <%= config.language === 'de' ? 'selected' : '' %>>German</option>
+              <option value="ar" <%= config.language === 'ar' ? 'selected' : '' %>>Arabic</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Channels & Categories -->
+    <div class="section-card glass-card">
+      <div class="card-header">
+        <h3><i class="fa-solid fa-hashtag"></i> Channels & Categories</h3>
+      </div>
+      <div class="card-body">
+        <div class="form-group">
+          <label for="logsChannelId">Logs Channel</label>
+          <select id="logsChannelId" name="logsChannelId" class="form-control">
+            <option value="">-- Select Channel --</option>
+            <% textChannels.forEach(ch => { %>
+              <option value="<%= ch.id %>" <%= config.logsChannelId === ch.id ? 'selected' : '' %>>#<%= ch.name %></option>
+            <% }) %>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="welcomeChannelId">Welcome Channel</label>
+          <select id="welcomeChannelId" name="welcomeChannelId" class="form-control">
+            <option value="">-- Select Channel --</option>
+            <% textChannels.forEach(ch => { %>
+              <option value="<%= ch.id %>" <%= config.welcomeChannelId === ch.id ? 'selected' : '' %>>#<%= ch.name %></option>
+            <% }) %>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="complaintCategoryId">Complaint Ticket Category</label>
+          <select id="complaintCategoryId" name="complaintCategoryId" class="form-control">
+            <option value="">-- Select Category --</option>
+            <% categories.forEach(cat => { %>
+              <option value="<%= cat.id %>" <%= config.categoryIds?.complaint === cat.id ? 'selected' : '' %>><%= cat.name %></option>
+            <% }) %>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="suggestionCategoryId">Suggestion Ticket Category</label>
+          <select id="suggestionCategoryId" name="suggestionCategoryId" class="form-control">
+            <option value="">-- Select Category --</option>
+            <% categories.forEach(cat => { %>
+              <option value="<%= cat.id %>" <%= config.categoryIds?.suggestion === cat.id ? 'selected' : '' %>><%= cat.name %></option>
+            <% }) %>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="jointeamCategoryId">Join Team Ticket Category</label>
+          <select id="jointeamCategoryId" name="jointeamCategoryId" class="form-control">
+            <option value="">-- Select Category --</option>
+            <% categories.forEach(cat => { %>
+              <option value="<%= cat.id %>" <%= config.categoryIds?.jointeam === cat.id ? 'selected' : '' %>><%= cat.name %></option>
+            <% }) %>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Embed Color Customization -->
+    <div class="section-card glass-card">
+      <div class="card-header">
+        <h3><i class="fa-solid fa-palette"></i> Embed Color Themes</h3>
+      </div>
+      <div class="card-body color-pickers-row">
+        <div class="form-group color-group">
+          <label for="primaryColor">Primary Color</label>
+          <div class="color-picker-input">
+            <input type="color" id="primaryColorPicker" value="<%= config.embedColors?.primary || '#5865F2' %>" onchange="document.getElementById('primaryColor').value = this.value">
+            <input type="text" id="primaryColor" name="primaryColor" class="form-control" value="<%= config.embedColors?.primary || '#5865F2' %>">
+          </div>
+        </div>
+
+        <div class="form-group color-group">
+          <label for="dangerColor">Danger Color</label>
+          <div class="color-picker-input">
+            <input type="color" id="dangerColorPicker" value="<%= config.embedColors?.danger || '#ED4245' %>" onchange="document.getElementById('dangerColor').value = this.value">
+            <input type="text" id="dangerColor" name="dangerColor" class="form-control" value="<%= config.embedColors?.danger || '#ED4245' %>">
+          </div>
+        </div>
+
+        <div class="form-group color-group">
+          <label for="successColor">Success Color</label>
+          <div class="color-picker-input">
+            <input type="color" id="successColorPicker" value="<%= config.embedColors?.success || '#57F287' %>" onchange="document.getElementById('successColor').value = this.value">
+            <input type="text" id="successColor" name="successColor" class="form-control" value="<%= config.embedColors?.success || '#57F287' %>">
+          </div>
+        </div>
+
+        <div class="form-group color-group">
+          <label for="warningColor">Warning Color</label>
+          <div class="color-picker-input">
+            <input type="color" id="warningColorPicker" value="<%= config.embedColors?.warning || '#FEE75C' %>" onchange="document.getElementById('warningColor').value = this.value">
+            <input type="text" id="warningColor" name="warningColor" class="form-control" value="<%= config.embedColors?.warning || '#FEE75C' %>">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <button type="submit" class="btn btn-primary btn-lg"><i class="fa-solid fa-floppy-disk"></i> Save Server Settings</button>
+  </div>
+</form>

@@ -1,0 +1,29 @@
+{
+  "token": "MTUxOTQ0NDIyMTk1Njg1MzgyMA.GyH43T.BnnKoCmwJjYHlpdnb3g_DXQe_Kxj6rptBC3aTU",
+  "clientId": "1519444221956853820",
+  "clientSecret": "ZNskrkzKhWcp2G8lAxnilbXpfUPhe9E2",
+  "guildId": "1410670015136403599",
+  "staffRoleId": "1527875652651581440",
+  "logsChannelId": "1519492793083363348",
+  "categoryIds": {
+    "complaint": "1519493416335970328",
+    "suggestion": "1519493416335970328",
+    "jointeam": "1519493416335970328"
+  },
+  "ticketTypes": {
+    "complaint": {
+      "prefix": "complaint"
+    },
+    "suggestion": {
+      "prefix": "suggestion"
+    },
+    "jointeam": {
+      "prefix": "jointeam"
+    }
+  },
+  "embedColors": {
+    "primary": "#5865F2",
+    "danger": "#ED4245",
+    "success": "#57F287"
+  }
+}

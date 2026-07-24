@@ -1,0 +1,145 @@
+<form id="ticketSettingsForm" class="settings-form">
+  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+  <!-- Panel Configuration -->
+  <div class="section-card glass-card">
+    <div class="card-header">
+      <h3><i class="fa-solid fa-window-maximize"></i> Ticket Panel Content</h3>
+    </div>
+    <div class="card-body">
+      <div class="form-group">
+        <label for="panelTitle">Ticket Panel Title</label>
+        <input type="text" id="panelTitle" name="panelTitle" class="form-control" value="<%= config.panel?.title || '🎫 OTC Ticket Center' %>" required>
+      </div>
+
+      <div class="form-group">
+        <label for="panelDescription">Ticket Panel Description</label>
+        <textarea id="panelDescription" name="panelDescription" class="form-control" rows="4" required><%= config.panel?.description || 'Welcome to the OTC Support Center.\n\nPlease choose one of the options below.' %></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ticket Types & Buttons Grid -->
+  <div class="section-card glass-card">
+    <div class="card-header">
+      <h3><i class="fa-solid fa-list-check"></i> Ticket Types & Button Customization</h3>
+    </div>
+    <div class="card-body">
+
+      <!-- Complaint Ticket -->
+      <div class="ticket-type-box">
+        <div class="box-header">
+          <h4><i class="fa-solid fa-face-angry text-danger"></i> Complaint Ticket Button</h4>
+          <label class="switch">
+            <input type="checkbox" name="complaintEnabled" value="true" <%= config.ticketTypes?.complaint?.enabled !== false ? 'checked' : '' %>>
+            <span class="slider round"></span>
+          </label>
+        </div>
+        <div class="box-body form-row">
+          <div class="form-group third">
+            <label>Button Label</label>
+            <input type="text" name="complaintLabel" class="form-control" value="<%= config.ticketTypes?.complaint?.label || 'Complaints' %>">
+          </div>
+          <div class="form-group third">
+            <label>Emoji</label>
+            <input type="text" name="complaintEmoji" class="form-control" value="<%= config.ticketTypes?.complaint?.emoji || '😡' %>">
+          </div>
+          <div class="form-group third">
+            <label>Channel Prefix</label>
+            <input type="text" name="complaintPrefix" class="form-control" value="<%= config.ticketTypes?.complaint?.prefix || 'complaint' %>">
+          </div>
+        </div>
+      </div>
+
+      <!-- Suggestion Ticket -->
+      <div class="ticket-type-box">
+        <div class="box-header">
+          <h4><i class="fa-solid fa-lightbulb text-info"></i> Suggestion Ticket Button</h4>
+          <label class="switch">
+            <input type="checkbox" name="suggestionEnabled" value="true" <%= config.ticketTypes?.suggestion?.enabled !== false ? 'checked' : '' %>>
+            <span class="slider round"></span>
+          </label>
+        </div>
+        <div class="box-body form-row">
+          <div class="form-group third">
+            <label>Button Label</label>
+            <input type="text" name="suggestionLabel" class="form-control" value="<%= config.ticketTypes?.suggestion?.label || 'Suggestions' %>">
+          </div>
+          <div class="form-group third">
+            <label>Emoji</label>
+            <input type="text" name="suggestionEmoji" class="form-control" value="<%= config.ticketTypes?.suggestion?.emoji || '💡' %>">
+          </div>
+          <div class="form-group third">
+            <label>Channel Prefix</label>
+            <input type="text" name="suggestionPrefix" class="form-control" value="<%= config.ticketTypes?.suggestion?.prefix || 'suggestion' %>">
+          </div>
+        </div>
+      </div>
+
+      <!-- Join Team Ticket -->
+      <div class="ticket-type-box">
+        <div class="box-header">
+          <h4><i class="fa-solid fa-user-plus text-success"></i> Join Team Application Button</h4>
+          <label class="switch">
+            <input type="checkbox" name="jointeamEnabled" value="true" <%= config.ticketTypes?.jointeam?.enabled !== false ? 'checked' : '' %>>
+            <span class="slider round"></span>
+          </label>
+        </div>
+        <div class="box-body form-row">
+          <div class="form-group third">
+            <label>Button Label</label>
+            <input type="text" name="jointeamLabel" class="form-control" value="<%= config.ticketTypes?.jointeam?.label || 'Request to Join Team' %>">
+          </div>
+          <div class="form-group third">
+            <label>Emoji</label>
+            <input type="text" name="jointeamEmoji" class="form-control" value="<%= config.ticketTypes?.jointeam?.emoji || '🤝' %>">
+          </div>
+          <div class="form-group third">
+            <label>Channel Prefix</label>
+            <input type="text" name="jointeamPrefix" class="form-control" value="<%= config.ticketTypes?.jointeam?.prefix || 'jointeam' %>">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Automation & Restrictions -->
+  <div class="section-card glass-card">
+    <div class="card-header">
+      <h3><i class="fa-solid fa-gear"></i> Ticket Rules & Automation</h3>
+    </div>
+    <div class="card-body form-row">
+      <div class="form-group third">
+        <label for="maxTicketsPerUser">Max Tickets Per User</label>
+        <input type="number" id="maxTicketsPerUser" name="maxTicketsPerUser" class="form-control" value="<%= config.maxTicketsPerUser || 1 %>" min="1" max="10">
+      </div>
+
+      <div class="form-group third">
+        <label>Auto Close Tickets</label>
+        <div class="checkbox-wrapper">
+          <label class="switch">
+            <input type="checkbox" name="autoClose" value="true" <%= config.autoClose ? 'checked' : '' %>>
+            <span class="slider round"></span>
+          </label>
+          <span>Close inactive tickets</span>
+        </div>
+      </div>
+
+      <div class="form-group third">
+        <label>Auto Delete Closed Tickets</label>
+        <div class="checkbox-wrapper">
+          <label class="switch">
+            <input type="checkbox" name="autoDelete" value="true" <%= config.autoDelete ? 'checked' : '' %>>
+            <span class="slider round"></span>
+          </label>
+          <span>Delete on close</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <button type="submit" class="btn btn-primary btn-lg"><i class="fa-solid fa-floppy-disk"></i> Save Ticket Settings</button>
+  </div>
+</form>

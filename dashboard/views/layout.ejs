@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="csrf-token" content="<%= typeof csrfToken !== 'undefined' ? csrfToken : '' %>">
+  <title>
+    <%= typeof pageTitle !=='undefined' ? pageTitle : 'Dashboard' %> - OTC Ticket Bot Dashboard
+  </title>
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Custom Discord Dark Theme CSS -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!-- Chart.js for analytics -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="discord-theme">
+
+  <div class="app-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="bot-brand">
+          <div class="brand-avatar">
+            <i class="fa-solid fa-ticket-simple"></i>
+          </div>
+          <div class="brand-info">
+            <span class="brand-title">
+              <%= (typeof config !=='undefined' && config.botName) ? config.botName : 'OTC Ticket Bot' %>
+            </span>
+            <span class="brand-sub">Management Suite</span>
+          </div>
+        </div>
+        <button class="mobile-close-btn" id="mobileSidebarClose"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-title">OVERVIEW</div>
+        <a href="/dashboard/home" class="nav-item <%= activeTab === 'home' ? 'active' : '' %>">
+          <i class="fa-solid fa-chart-pie"></i> <span>Dashboard Home</span>
+        </a>
+        <a href="/dashboard/statistics" class="nav-item <%= activeTab === 'statistics' ? 'active' : '' %>">
+          <i class="fa-solid fa-chart-line"></i> <span>Statistics</span>
+        </a>
+
+        <div class="nav-section-title">CONFIGURATIONS</div>
+        <a href="/dashboard/server-settings" class="nav-item <%= activeTab === 'server-settings' ? 'active' : '' %>">
+          <i class="fa-solid fa-sliders"></i> <span>Server Settings</span>
+        </a>
+        <a href="/dashboard/ticket-settings" class="nav-item <%= activeTab === 'ticket-settings' ? 'active' : '' %>">
+          <i class="fa-solid fa-tags"></i> <span>Ticket Settings</span>
+        </a>
+        <a href="/dashboard/join-team" class="nav-item <%= activeTab === 'join-team' ? 'active' : '' %>">
+          <i class="fa-solid fa-user-plus"></i> <span>Join Team Settings</span>
+        </a>
+        <a href="/dashboard/role-settings" class="nav-item <%= activeTab === 'role-settings' ? 'active' : '' %>">
+          <i class="fa-solid fa-user-shield"></i> <span>Role Settings</span>
+        </a>
+
+        <div class="nav-section-title">RECORDS & CONTROL</div>
+        <a href="/dashboard/transcripts" class="nav-item <%= activeTab === 'transcripts' ? 'active' : '' %>">
+          <i class="fa-solid fa-file-lines"></i> <span>Transcripts</span>
+        </a>
+        <a href="/dashboard/logs" class="nav-item <%= activeTab === 'logs' ? 'active' : '' %>">
+          <i class="fa-solid fa-clock-rotate-left"></i> <span>Activity Logs</span>
+        </a>
+        <a href="/dashboard/control" class="nav-item <%= activeTab === 'control' ? 'active' : '' %>">
+          <i class="fa-solid fa-power-off"></i> <span>Bot Control</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-card">
+          <img src="<%= (user && user.avatar) ? user.avatar : 'https://cdn.discordapp.com/embed/avatars/0.png' %>"
+            alt="User" class="user-avatar">
+          <div class="user-details">
+            <span class="user-name">
+              <%= user ? user.global_name : 'Guest' %>
+
+            </span>
+            <span class="user-tag">@<%= user ? user.username : 'Not Logged In' %></span>
+            </span>
+          </div>
+          <a href="/auth/logout" class="logout-btn" title="Logout"><i class="fa-solid fa-right-from-bracket"></i></a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Workspace -->
+    <main class="main-content">
+      <!-- Navbar -->
+      <header class="navbar">
+        <div class="navbar-left">
+          <button class="mobile-toggle-btn" id="mobileSidebarToggle"><i class="fa-solid fa-bars"></i></button>
+          <h1 class="page-header-title">
+            <%= typeof pageTitle !=='undefined' ? pageTitle : 'Dashboard' %>
+        </div>
+        <div class="navbar-right">
+          <div class="status-indicator online">
+            <span class="status-dot"></span>
+            <span class="status-text">Bot Active</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Alert Container -->
+      <div id="alertContainer" class="alert-container"></div>
+
+      <!-- Page Specific Content -->
+      <div class="content-body">
+        <%- body %>
+      </div>
+    </main>
+  </div>
+
+  <script src="/js/main.js"></script>
+</body>
+
+</html>

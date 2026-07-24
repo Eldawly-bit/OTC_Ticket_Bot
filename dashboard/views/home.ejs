@@ -1,0 +1,88 @@
+<div class="server-banner-card glass-card">
+  <div class="server-banner-content">
+    <img src="<%= stats.serverIcon %>" alt="<%= stats.serverName %>" class="server-icon-lg">
+    <div class="server-banner-text">
+      <h2><%= stats.serverName %></h2>
+      <p><i class="fa-solid fa-users"></i> <%= stats.totalMembers.toLocaleString() %> Server Members | <i class="fa-solid fa-signal"></i> Ping: <strong><%= stats.ping %>ms</strong></p>
+    </div>
+  </div>
+  <div class="server-banner-status">
+    <span class="badge badge-success"><i class="fa-solid fa-circle"></i> <%= stats.botStatus %></span>
+  </div>
+</div>
+
+<!-- Key Metrics Grid -->
+<div class="metrics-grid">
+  <div class="metric-card glass-card">
+    <div class="metric-icon primary"><i class="fa-solid fa-ticket"></i></div>
+    <div class="metric-info">
+      <span class="metric-label">Total Tickets</span>
+      <h3 class="metric-value"><%= stats.totalTickets %></h3>
+    </div>
+  </div>
+
+  <div class="metric-card glass-card">
+    <div class="metric-icon warning"><i class="fa-solid fa-folder-open"></i></div>
+    <div class="metric-info">
+      <span class="metric-label">Open Tickets</span>
+      <h3 class="metric-value"><%= stats.openTickets %></h3>
+    </div>
+  </div>
+
+  <div class="metric-card glass-card">
+    <div class="metric-icon success"><i class="fa-solid fa-circle-check"></i></div>
+    <div class="metric-info">
+      <span class="metric-label">Closed Tickets</span>
+      <h3 class="metric-value"><%= stats.closedTickets %></h3>
+    </div>
+  </div>
+
+  <div class="metric-card glass-card">
+    <div class="metric-icon danger"><i class="fa-solid fa-face-angry"></i></div>
+    <div class="metric-info">
+      <span class="metric-label">Complaints</span>
+      <h3 class="metric-value"><%= stats.totalComplaints %></h3>
+    </div>
+  </div>
+
+  <div class="metric-card glass-card">
+    <div class="metric-icon info"><i class="fa-solid fa-lightbulb"></i></div>
+    <div class="metric-info">
+      <span class="metric-label">Suggestions</span>
+      <h3 class="metric-value"><%= stats.totalSuggestions %></h3>
+    </div>
+  </div>
+
+  <div class="metric-card glass-card">
+    <div class="metric-icon accent"><i class="fa-solid fa-user-group"></i></div>
+    <div class="metric-info">
+      <span class="metric-label">Team Applications</span>
+      <h3 class="metric-value"><%= stats.totalApplications %></h3>
+    </div>
+  </div>
+</div>
+
+<!-- Quick Control Actions -->
+<div class="section-card glass-card">
+  <div class="card-header">
+    <h3><i class="fa-solid fa-bolt"></i> Quick Actions</h3>
+  </div>
+  <div class="card-body quick-actions-row">
+    <a href="/dashboard/server-settings" class="quick-btn">
+      <i class="fa-solid fa-sliders"></i>
+      <span>Edit Server Settings</span>
+    </a>
+    <a href="/dashboard/ticket-settings" class="quick-btn">
+      <i class="fa-solid fa-tags"></i>
+      <span>Customize Ticket Panel</span>
+    </a>
+    <a href="/dashboard/join-team" class="quick-btn">
+      <i class="fa-solid fa-user-plus"></i>
+      <span>Manage Application Questions</span>
+    </a>
+    <a href="/dashboard/transcripts" class="quick-btn">
+      <i class="fa-solid fa-file-lines"></i>
+      <span>View Saved Transcripts</span>
+    </a>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - OTC Ticket Bot Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="discord-theme login-body">
+
+  <div class="login-wrapper">
+    <div class="glass-card login-card">
+      <div class="login-header">
+        <div class="login-icon">
+          <i class="fa-solid fa-ticket-simple"></i>
+        </div>
+        <h2>OTC Ticket Bot</h2>
+        <p>Admin & Staff Web Control Dashboard</p>
+      </div>
+
+      <% if (error) { %>
+        <div class="alert alert-danger">
+          <i class="fa-solid fa-triangle-exclamation"></i> <%= error %>
+        </div>
+      <% } %>
+
+      <div class="login-body-content">
+        <p class="login-info">Sign in with your Discord account to manage your ticket bot settings, view real-time logs, transcripts, and server analytics.</p>
+
+        <a href="<%= discordAuthUrl %>" class="btn btn-discord btn-lg">
+          <i class="fa-brands fa-discord"></i> Login with Discord
+        </a>
+      </div>
+
+      <div class="login-footer">
+        <span><i class="fa-solid fa-lock"></i> Requires Administrator or Manage Server permissions</span>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

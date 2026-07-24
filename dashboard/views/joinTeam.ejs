@@ -1,0 +1,65 @@
+<div class="section-card glass-card">
+  <div class="card-header flex-between">
+    <div>
+      <h3><i class="fa-solid fa-clipboard-question"></i> Application Modal Questions</h3>
+      <p class="subtitle">Customize up to 5 dynamic questions for the Discord Join Team Modal</p>
+    </div>
+    <button type="button" class="btn btn-success" id="addQuestionBtn" <%= questions.length >= 5 ? 'disabled' : '' %>>
+      <i class="fa-solid fa-plus"></i> Add Question
+    </button>
+  </div>
+
+  <div class="card-body">
+    <form id="joinTeamQuestionsForm">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+      <div id="questionsContainer" class="questions-list">
+        <% questions.forEach((q, index) => { %>
+          <div class="question-card glass-card" data-index="<%= index %>">
+            <div class="question-header">
+              <span class="question-badge"><i class="fa-solid fa-grip-vertical"></i> Question #<span class="q-num"><%= index + 1 %></span></span>
+              <button type="button" class="btn btn-sm btn-danger remove-q-btn"><i class="fa-solid fa-trash"></i> Remove</button>
+            </div>
+
+            <div class="question-body form-row">
+              <input type="hidden" name="question_key" value="<%= q.question_key %>">
+              
+              <div class="form-group half">
+                <label>Question Label / Title</label>
+                <input type="text" name="label" class="form-control" value="<%= q.label %>" placeholder="e.g. Name, Age, Experience" required>
+              </div>
+
+              <div class="form-group half">
+                <label>Placeholder Text</label>
+                <input type="text" name="placeholder" class="form-control" value="<%= q.placeholder %>" placeholder="e.g. Enter your name...">
+              </div>
+
+              <div class="form-group half">
+                <label>Response Type</label>
+                <select name="style" class="form-control">
+                  <option value="short" <%= q.style === 'short' ? 'selected' : '' %>>Short Text (Single Line)</option>
+                  <option value="paragraph" <%= q.style === 'paragraph' ? 'selected' : '' %>>Paragraph (Multi-line)</option>
+                </select>
+              </div>
+
+              <div class="form-group half">
+                <label>Required Option</label>
+                <div class="checkbox-wrapper">
+                  <label class="switch">
+                    <input type="checkbox" name="required" value="true" <%= q.required ? 'checked' : '' %>>
+                    <span class="slider round"></span>
+                  </label>
+                  <span>Mandatory field</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary btn-lg"><i class="fa-solid fa-floppy-disk"></i> Save Application Questions</button>
+      </div>
+    </form>
+  </div>
+</div>

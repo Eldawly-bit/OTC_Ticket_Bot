@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Access Denied - OTC Ticket Bot</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="discord-theme login-body">
+
+  <div class="login-wrapper">
+    <div class="glass-card login-card">
+      <div class="login-header">
+        <div class="login-icon error-icon">
+          <i class="fa-solid fa-user-slash"></i>
+        </div>
+        <h2>Access Restricted</h2>
+      </div>
+
+      <div class="login-body-content">
+        <p class="error-message"><%= message %></p>
+        
+        <div class="user-preview">
+          <% if (user) { %>
+            <img src="<%= user.avatar %>" alt="User Avatar" class="user-avatar-sm">
+            <span>Signed in as <strong><%= user.username %></strong></span>
+          <% } %>
+        </div>
+
+        <div class="btn-group">
+          <a href="/auth/logout" class="btn btn-secondary"><i class="fa-solid fa-right-from-bracket"></i> Switch Account</a>
+          <a href="/auth/login" class="btn btn-primary"><i class="fa-solid fa-arrow-rotate-right"></i> Try Again</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

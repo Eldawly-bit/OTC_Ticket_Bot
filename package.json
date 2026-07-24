@@ -1,0 +1,22 @@
+{
+  "name": "otc-ticket-bot",
+  "version": "1.0.0",
+  "description": "A professional and modern Discord ticket bot for OTC.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "debug": "^4.4.3",
+    "discord-html-transcripts": "^3.2.0",
+    "discord.js": "^14.16.3",
+    "dotenv": "^16.4.5",
+    "ejs": "^6.0.1",
+    "express": "^5.2.1",
+    "express-ejs-layouts": "^2.5.1",
+    "express-rate-limit": "^8.6.0",
+    "express-session": "^1.19.0",
+    "helmet": "^8.3.0",
+    "sqlite3": "^6.0.1"
+  }
+}

@@ -1,0 +1,78 @@
+<div class="section-card glass-card">
+  <div class="card-header">
+    <h3><i class="fa-solid fa-power-off"></i> Bot Operations & Live Reloading</h3>
+    <p class="subtitle">Execute system control commands to reload modules or restart the Discord Bot in real time</p>
+  </div>
+  <div class="card-body">
+
+    <div class="control-grid">
+
+      <div class="control-box glass-card">
+        <div class="control-icon primary">
+          <i class="fa-solid fa-terminal"></i>
+        </div>
+        <div class="control-details">
+          <h4>Reload Slash Commands</h4>
+          <p>Re-read and refresh all command handlers in memory without restarting.</p>
+          <button type="button" class="btn btn-primary control-action-btn" data-action="reload-commands">
+            <i class="fa-solid fa-rotate"></i> Reload Commands
+          </button>
+        </div>
+      </div>
+
+      <div class="control-box glass-card">
+        <div class="control-icon info">
+          <i class="fa-solid fa-toggle-on"></i>
+        </div>
+        <div class="control-details">
+          <h4>Reload Button Handlers</h4>
+          <p>Refresh button component listeners and action interactions.</p>
+          <button type="button" class="btn btn-info control-action-btn" data-action="reload-buttons">
+            <i class="fa-solid fa-rotate"></i> Reload Buttons
+          </button>
+        </div>
+      </div>
+
+      <div class="control-box glass-card">
+        <div class="control-icon accent">
+          <i class="fa-solid fa-bolt"></i>
+        </div>
+        <div class="control-details">
+          <h4>Reload Event Listeners</h4>
+          <p>Clear and re-bind all Discord Gateway event handlers.</p>
+          <button type="button" class="btn btn-accent control-action-btn" data-action="reload-events">
+            <i class="fa-solid fa-rotate"></i> Reload Events
+          </button>
+        </div>
+      </div>
+
+      <div class="control-box glass-card">
+        <div class="control-icon warning">
+          <i class="fa-solid fa-file-code"></i>
+        </div>
+        <div class="control-details">
+          <h4>Reload Configuration</h4>
+          <p>Reload `config.json` settings directly into active bot memory.</p>
+          <button type="button" class="btn btn-warning control-action-btn" data-action="reload-config">
+            <i class="fa-solid fa-rotate"></i> Reload Config
+          </button>
+        </div>
+      </div>
+
+      <div class="control-box glass-card full-width danger-box">
+        <div class="control-icon danger">
+          <i class="fa-solid fa-power-off"></i>
+        </div>
+        <div class="control-details">
+          <h4>Restart Discord Bot Process</h4>
+          <p>Safely restart the entire bot Node process. Active tickets will remain saved.</p>
+          <button type="button" class="btn btn-danger control-action-btn" data-action="restart-bot">
+            <i class="fa-solid fa-power-off"></i> Restart Bot Now
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,60 @@
+<div class="section-card glass-card">
+  <div class="card-header flex-between flex-wrap gap-3">
+    <div>
+      <h3><i class="fa-solid fa-clock-rotate-left"></i> Activity & Ticket Audit Logs</h3>
+      <p class="subtitle">Complete history of ticket creations, closes, deletes, and staff actions</p>
+    </div>
+    
+    <div class="header-actions flex-wrap gap-2">
+      <div class="tab-filters">
+        <button type="button" class="filter-btn active" data-type="all">All Logs</button>
+        <button type="button" class="filter-btn" data-type="user">User Logs</button>
+        <button type="button" class="filter-btn" data-type="staff">Staff Logs</button>
+      </div>
+
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="logsSearchInput" class="form-control" placeholder="Search action, staff, target...">
+      </div>
+    </div>
+  </div>
+
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="data-table" id="logsTable">
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>Action</th>
+            <th>Ticket Channel</th>
+            <th>Target User / Creator</th>
+            <th>Staff Member</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody id="logsTableBody">
+          <% if (logs.length === 0) { %>
+            <tr>
+              <td colspan="6" class="text-center py-4 text-muted">No activity logs recorded yet. Logs will populate automatically.</td>
+            </tr>
+          <% } else { %>
+            <% logs.forEach(l => { %>
+              <tr>
+                <td><%= new Date(l.timestamp).toLocaleString() %></td>
+                <td>
+                  <span class="badge <%= l.action.includes('Created') ? 'badge-success' : l.action.includes('Closed') ? 'badge-warning' : l.action.includes('Deleted') ? 'badge-danger' : 'badge-primary' %>">
+                    <%= l.action %>
+                  </span>
+                </td>
+                <td><code><%= l.ticket_name %></code></td>
+                <td><%= l.target_user || 'None' %></td>
+                <td><%= l.staff_tag || 'System' %></td>
+                <td><%= l.details || '-' %></td>
+              </tr>
+            <% }) %>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

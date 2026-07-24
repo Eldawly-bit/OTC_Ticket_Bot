@@ -1,0 +1,78 @@
+<form id="roleSettingsForm" class="settings-form">
+  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+  <div class="section-card glass-card">
+    <div class="card-header">
+      <h3><i class="fa-solid fa-user-shield"></i> Ticket Staff & Management Roles</h3>
+      <p class="subtitle">Configure team member permissions for managing ticket channels</p>
+    </div>
+    <div class="card-body">
+
+      <!-- Staff Roles -->
+      <div class="form-group">
+        <label for="staffRoles">Staff Roles (Can view, reply, close & manage tickets)</label>
+        <select id="staffRoles" name="staffRoles" class="form-control" multiple size="4">
+          <% roles.forEach(r => { %>
+            <option value="<%= r.id %>" <%= (config.roles?.staff || [config.staffRoleId]).includes(r.id) ? 'selected' : '' %>>
+              @<%= r.name %>
+            </option>
+          <% }) %>
+        </select>
+        <small class="form-text text-muted">Hold Ctrl/Cmd to select multiple roles.</small>
+      </div>
+
+      <!-- Support Roles -->
+      <div class="form-group">
+        <label for="supportRoles">Support Roles</label>
+        <select id="supportRoles" name="supportRoles" class="form-control" multiple size="3">
+          <% roles.forEach(r => { %>
+            <option value="<%= r.id %>" <%= (config.roles?.support || []).includes(r.id) ? 'selected' : '' %>>
+              @<%= r.name %>
+            </option>
+          <% }) %>
+        </select>
+      </div>
+
+      <!-- Admin Roles -->
+      <div class="form-group">
+        <label for="adminRoles">Admin Roles</label>
+        <select id="adminRoles" name="adminRoles" class="form-control" multiple size="3">
+          <% roles.forEach(r => { %>
+            <option value="<%= r.id %>" <%= (config.roles?.admin || []).includes(r.id) ? 'selected' : '' %>>
+              @<%= r.name %>
+            </option>
+          <% }) %>
+        </select>
+      </div>
+
+      <!-- Manager Roles -->
+      <div class="form-group">
+        <label for="managerRoles">Manager Roles</label>
+        <select id="managerRoles" name="managerRoles" class="form-control" multiple size="3">
+          <% roles.forEach(r => { %>
+            <option value="<%= r.id %>" <%= (config.roles?.manager || []).includes(r.id) ? 'selected' : '' %>>
+              @<%= r.name %>
+            </option>
+          <% }) %>
+        </select>
+      </div>
+
+      <!-- Ping Roles -->
+      <div class="form-group">
+        <label for="pingRoles">Ping Roles (Mentioned when a new ticket is opened)</label>
+        <select id="pingRoles" name="pingRoles" class="form-control" multiple size="3">
+          <% roles.forEach(r => { %>
+            <option value="<%= r.id %>" <%= (config.roles?.ping || []).includes(r.id) ? 'selected' : '' %>>
+              @<%= r.name %>
+            </option>
+          <% }) %>
+        </select>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <button type="submit" class="btn btn-primary btn-lg"><i class="fa-solid fa-floppy-disk"></i> Save Role Settings</button>
+  </div>
+</form>

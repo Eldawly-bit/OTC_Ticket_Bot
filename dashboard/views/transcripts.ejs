@@ -1,0 +1,61 @@
+<div class="section-card glass-card">
+  <div class="card-header flex-between">
+    <div>
+      <h3><i class="fa-solid fa-file-lines"></i> Ticket Transcripts</h3>
+      <p class="subtitle">Search, view, download or delete saved HTML & TXT ticket transcripts</p>
+    </div>
+    <div class="search-box">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" id="transcriptSearchInput" class="form-control" placeholder="Search ticket name, creator, staff...">
+    </div>
+  </div>
+
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="data-table" id="transcriptsTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Ticket Name</th>
+            <th>Type</th>
+            <th>Creator</th>
+            <th>Staff</th>
+            <th>Date & Time</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (transcripts.length === 0) { %>
+            <tr>
+              <td colspan="7" class="text-center py-4 text-muted">No transcripts found. Transcripts will appear here once saved from Discord tickets.</td>
+            </tr>
+          <% } else { %>
+            <% transcripts.forEach(t => { %>
+              <tr data-id="<%= t.id %>">
+                <td>#<%= t.id %></td>
+                <td><span class="badge badge-primary"><%= t.ticket_name %></span></td>
+                <td><%= t.type %></td>
+                <td><%= t.creator_tag || 'Unknown' %></td>
+                <td><%= t.staff_tag || 'System' %></td>
+                <td><%= new Date(t.timestamp).toLocaleString() %></td>
+                <td>
+                  <div class="btn-group">
+                    <a href="/api/transcripts/<%= t.id %>/download/html" class="btn btn-sm btn-info" title="Download HTML">
+                      <i class="fa-solid fa-file-code"></i> HTML
+                    </a>
+                    <a href="/api/transcripts/<%= t.id %>/download/txt" class="btn btn-sm btn-secondary" title="Download TXT">
+                      <i class="fa-solid fa-file-lines"></i> TXT
+                    </a>
+                    <button type="button" class="btn btn-sm btn-danger delete-transcript-btn" data-id="<%= t.id %>" title="Delete Transcript">
+                      <i class="fa-solid fa-trash"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            <% }) %>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
