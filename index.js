@@ -30,8 +30,11 @@ if (!fs.existsSync(configPath)) {
 }
 
 const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+
+config.token = process.env.TOKEN || config.token;
+
 if (!config.token) {
-  console.error('[ERROR] Discord Bot Token is missing in config.json!');
+  console.error('[ERROR] Discord Bot Token is missing!');
   process.exit(1);
 }
 
