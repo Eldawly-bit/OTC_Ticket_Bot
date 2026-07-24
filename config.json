@@ -1,10 +1,10 @@
 {
   "token": "YOUR_BOT_TOKEN",
-  "clientId": "",
-  "clientSecret": "",
-  "guildId": "",
-  "staffRoleId": "",
-  "logsChannelId": "",
+  "clientId": "1528512375651565750",
+  "clientSecret": "ZNskrkzKhWcp2G8lAxnilbXpfUPhe9E2",
+  "guildId": "1410670015136403599",
+  "staffRoleId": "1527875652651581440",
+  "logsChannelId": "1519492793083363348",
   "categoryIds": {
     "complaint": "1519493416335970328",
     "suggestion": "1519493416335970328",
